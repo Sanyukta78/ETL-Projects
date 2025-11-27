@@ -1,0 +1,12 @@
+{
+	"name": "ls_Adls1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "to connect to ADLS",
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://azssdatalake.dfs.core.windows.net/"
+		}
+	}
+}

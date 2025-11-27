@@ -1,0 +1,23 @@
+{
+	"name": "ds_souce_http",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "Sanyukta78/ETL-Projects/refs/heads/main/proj_users_data.csv?token=GHSAT0AAAAAADOF772DJU5JKM7B5WHZQBRQ2IKRJFA"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

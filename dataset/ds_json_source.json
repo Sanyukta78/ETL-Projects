@@ -1,0 +1,60 @@
+{
+	"name": "ds_json_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "oscar-best-picture-award-winners.json",
+				"container": "source"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"oscar": {
+					"type": "integer"
+				},
+				"released_year": {
+					"type": "integer"
+				},
+				"poster": {
+					"type": "string"
+				},
+				"rating": {
+					"type": "string"
+				},
+				"duration": {
+					"type": "string"
+				},
+				"genre": {
+					"type": "string"
+				},
+				"summary": {
+					"type": "string"
+				},
+				"directors": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"stars": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

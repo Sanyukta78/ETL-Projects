@@ -1,0 +1,79 @@
+{
+	"name": "json_flattening",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_json_source",
+						"type": "DatasetReference"
+					},
+					"name": "jsonfile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_json_sink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flattendirector"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          name as string,",
+				"          oscar as integer,",
+				"          released_year as integer,",
+				"          poster as string,",
+				"          rating as string,",
+				"          duration as string,",
+				"          genre as string,",
+				"          summary as string,",
+				"          directors as string[],",
+				"          stars as string[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'arrayOfDocuments',",
+				"     partitionBy('hash', 1)) ~> jsonfile",
+				"jsonfile foldDown(unroll(stars),",
+				"     mapColumn(",
+				"          name,",
+				"          oscar,",
+				"          released_year,",
+				"          poster,",
+				"          rating,",
+				"          duration,",
+				"          genre,",
+				"          summary,",
+				"          director = directors,",
+				"          star = stars",
+				"     ),",
+				"     partitionBy('hash', 1),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flattendirector",
+				"flattendirector sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Employee as string,",
+				"          City as string,",
+				"          State as string,",
+				"          Tenure as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

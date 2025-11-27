@@ -1,0 +1,13 @@
+{
+	"name": "ls_AzureBlobStorage1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "to connect to Blob Storage",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://ssfirstdb.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}

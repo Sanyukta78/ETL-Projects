@@ -1,0 +1,9 @@
+{
+	"name": "ssfirstadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "caf2516d-552e-47d0-a3d7-4633d5e99842",
+		"tenantId": "851bbc80-7ce3-49a4-b345-17c81b8d1813"
+	}
+}
