@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ssfirstadf"
+		},
+		"ls_az_sqldb_password": {
+			"value": ""
+		},
+		"ls_Adls1_properties_typeProperties_url": {
+			"value": "https://azssdatalake.dfs.core.windows.net/"
+		},
+		"ls_AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
+			"value": "https://ssfirstdb.blob.core.windows.net/"
+		},
+		"ls_az_sqldb_properties_typeProperties_server": {
+			"value": "azssserver.database.windows.net"
+		},
+		"ls_az_sqldb_properties_typeProperties_database": {
+			"value": "az_ss_database"
+		},
+		"ls_az_sqldb_properties_typeProperties_userName": {
+			"value": "sssqlserver"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"value": "1101-141631-lz5g6b1f"
+		},
+		"ls_http_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
