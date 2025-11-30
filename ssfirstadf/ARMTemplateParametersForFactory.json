@@ -8,6 +8,9 @@
 		"ls_az_sqldb_password": {
 			"value": ""
 		},
+		"ls_databricks_accessToken": {
+			"value": ""
+		},
 		"ls_Adls1_properties_typeProperties_url": {
 			"value": "https://azssdatalake.dfs.core.windows.net/"
 		},
@@ -24,7 +27,7 @@
 			"value": "sssqlserver"
 		},
 		"ls_databricks_properties_typeProperties_existingClusterId": {
-			"value": "1101-141631-lz5g6b1f"
+			"value": "1129-172043-2dsu6y76"
 		},
 		"ls_http_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"

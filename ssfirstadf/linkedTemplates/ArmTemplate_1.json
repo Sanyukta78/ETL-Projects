@@ -1239,7 +1239,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sanfan0082_gmail.com#ext#@sanfan0082gmail.onmicrosoft.com/learn _practice/Access_ADLS_Mnt_Service Principal"
+							"notebookPath": "/Repos/sanfan0082@gmail.com/ETL-Projects/Access_ADLS_Service Principal"
 						},
 						"linkedServiceName": {
 							"referenceName": "ls_databricks",

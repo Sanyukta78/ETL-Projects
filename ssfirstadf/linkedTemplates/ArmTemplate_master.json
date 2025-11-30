@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_az_sqldb'"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"ls_Adls1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azssdatalake.dfs.core.windows.net/"
@@ -33,7 +37,7 @@
 		},
 		"ls_databricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "1101-141631-lz5g6b1f"
+			"defaultValue": "1129-172043-2dsu6y76"
 		},
 		"ls_http_properties_typeProperties_url": {
 			"type": "string",
@@ -68,6 +72,9 @@
 					},
 					"ls_az_sqldb_password": {
 						"value": "[parameters('ls_az_sqldb_password')]"
+					},
+					"ls_databricks_accessToken": {
+						"value": "[parameters('ls_databricks_accessToken')]"
 					},
 					"ls_Adls1_properties_typeProperties_url": {
 						"value": "[parameters('ls_Adls1_properties_typeProperties_url')]"

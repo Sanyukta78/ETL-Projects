@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_az_sqldb'"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"ls_Adls1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azssdatalake.dfs.core.windows.net/"
@@ -33,7 +37,7 @@
 		},
 		"ls_databricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "1101-141631-lz5g6b1f"
+			"defaultValue": "1129-172043-2dsu6y76"
 		},
 		"ls_http_properties_typeProperties_url": {
 			"type": "string",
@@ -380,7 +384,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sanfan0082_gmail.com#ext#@sanfan0082gmail.onmicrosoft.com/learn _practice/Access_ADLS_Mnt_Service Principal"
+							"notebookPath": "/Repos/sanfan0082@gmail.com/ETL-Projects/Access_ADLS_Service Principal"
 						},
 						"linkedServiceName": {
 							"referenceName": "ls_databricks",
@@ -1883,9 +1887,11 @@
 				"annotations": [],
 				"type": "AzureDatabricks",
 				"typeProperties": {
-					"domain": "https://adb-57098621731305.5.azuredatabricks.net",
-					"authentication": "MSI",
-					"workspaceResourceId": "/subscriptions/c8478033-6a8b-485b-a436-821deadee331/resourceGroups/AZ_SS_25/providers/Microsoft.Databricks/workspaces/az_ss_databricks",
+					"domain": "https://adb-1476008907898720.0.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
 					"existingClusterId": "[parameters('ls_databricks_properties_typeProperties_existingClusterId')]"
 				}
 			},
