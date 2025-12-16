@@ -1,0 +1,64 @@
+--Creating main table
+CREATE TABLE source_emp
+(	emp_id				INT,
+	emp_name			VARCHAR(50),
+	last_modify_time	DATETIME2);
+
+--creating watermark table 
+CREATE TABLE water_mark
+(	table_name			VARCHAR(50),
+	water_mark_value	DATETIME2);
+
+--populating records in main file
+INSERT INTO [dbo].[source_emp]
+VALUES
+(1,	'Percy Jackson', GETDATE()),
+(2,	'Sarah Bolt',GETDATE()),
+(3,	'Mathew Jackson',GETDATE()),
+(4,	'William Stokes',GETDATE());
+
+--displaying contents of main file
+SELECT * FROM [dbo].[source_emp]
+  
+--updating watermark table with first entry
+INSERT INTO [dbo].[water_mark]
+VALUES
+('source_emp', '2025-12-16 14:20:44.2433333');
+
+--displaying contents of water mark table
+select * from [dbo].[water_mark]
+  
+--creating stored procedure for updating watermark table
+CREATE PROCEDURE update_watermark
+		@last_modify_time	DATETIME2,
+		@table_name	VARCHAR(50)
+AS 
+BEGIN
+   SET NOCOUNT ON; --not to return "rows affected" message
+
+	UPDATE [water_mark]
+	SET water_mark_value = @last_modify_time
+	WHERE table_name = @table_name;
+END;
+
+--inserting incremental record
+INSERT INTO source_emp
+VALUES (5, 'Emily Johnson', getdate())
+  
+--executing stored procedure for testing purpose
+EXECUTE update_watermark @last_modify_time = '2025-12-16 14:35:40.7533333',
+		@table_name	= 'source_emp';
+
+--checking new record from watermark table
+SELECT * FROM [dbo].[water_mark]
+  
+--initiating second incremental load to test pipeline run
+INSERT INTO source_emp
+VALUES
+(6, 'Daniel Thompson', getdate()),
+(7, 'James Miller', getdate());
+
+
+
+
+
