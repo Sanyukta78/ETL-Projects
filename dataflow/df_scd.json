@@ -1,5 +1,5 @@
 {
-	"name": "dataflow4",
+	"name": "df_scd",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
