@@ -5,19 +5,111 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "ds_scd2_source",
+						"type": "DatasetReference"
+					},
+					"name": "SrcEmp"
 				},
 				{
-					"name": "sink"
+					"dataset": {
+						"referenceName": "ds_scd2_sink",
+						"type": "DatasetReference"
+					},
+					"name": "TgtEmp"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_scd2_sink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_scd2_sink",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SrcHash"
+				},
+				{
+					"name": "DimHash"
+				},
+				{
+					"name": "LookUpHash"
+				},
+				{
+					"name": "AlterRowInsert"
+				},
+				{
+					"name": "AlterRowUpdate"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> sink"
+				"source(output(",
+				"          s_e_id as short,",
+				"          name as string,",
+				"          dept as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> SrcEmp",
+				"source(output(",
+				"          t_e_id as short,",
+				"          name as string,",
+				"          dept as string,",
+				"          st_date as date,",
+				"          end_date as string,",
+				"          is_current as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> TgtEmp",
+				"SrcEmp derive(src_hash = md5(name,dept)) ~> SrcHash",
+				"TgtEmp derive(dim_hash = md5(name,dept)) ~> DimHash",
+				"SrcHash, DimHash lookup(s_e_id == t_e_id,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> LookUpHash",
+				"LookUpHash alterRow(insertIf(isNull(t_e_id))) ~> AlterRowInsert",
+				"LookUpHash alterRow(updateIf(!isNull(t_e_id) && src_hash != dim_hash)) ~> AlterRowUpdate",
+				"AlterRowUpdate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          e_id as string,",
+				"          name as string,",
+				"          dept as string,",
+				"          st_date as string,",
+				"          end_date as string,",
+				"          is_current as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"AlterRowInsert sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          e_id as string,",
+				"          name as string,",
+				"          dept as string,",
+				"          st_date as string,",
+				"          end_date as string,",
+				"          is_current as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
