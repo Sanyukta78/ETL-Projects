@@ -26,14 +26,7 @@
 			{
 				"name": "copy_web_act",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "WebAct1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -41,6 +34,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "RestSource",
@@ -51,33 +45,12 @@
 							"supportRFC5988": "true"
 						}
 					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_web_act_src",
 						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_web_act_sink",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileName": {
-								"value": "@concat('weather_', formatDateTime(utcNow(),'yyyyMMdd_HHmm'), '.json')",
-								"type": "Expression"
-							}
-						}
 					}
 				]
 			}
