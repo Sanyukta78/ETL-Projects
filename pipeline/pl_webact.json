@@ -45,12 +45,30 @@
 							"supportRFC5988": "true"
 						}
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_web_act_src",
 						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_web_act_sink",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "@concat('weather_', formatDateTime(utcNow(),'yyyyMMdd_HHmm'), '.json')"
+						}
 					}
 				]
 			}
