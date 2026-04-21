@@ -88,7 +88,13 @@
 				"outputs": [
 					{
 						"referenceName": "ds_web_act_sink",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@concat('weather_', formatDateTime(utcNow(),'yyyyMMdd_HHmm'), '.json')",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
