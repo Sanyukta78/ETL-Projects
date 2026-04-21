@@ -24,35 +24,11 @@
 				}
 			},
 			{
-				"name": "Set_var_web_act",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "WebAct1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "Temp",
-					"value": {
-						"value": "@activity('WebAct1').output.current_weather.temperature",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "copy_web_act",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set_var_web_act",
+						"activity": "WebAct1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -108,6 +84,9 @@
 		],
 		"variables": {
 			"Temp": {
+				"type": "String"
+			},
+			"Temp1": {
 				"type": "String"
 			}
 		},
