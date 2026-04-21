@@ -17,8 +17,8 @@
 				"typeProperties": {
 					"method": "GET",
 					"headers": {
-						"\"Accept-Language\"": "\"en-us\"",
-						"\"Content-Type\"": "\"application/json\""
+						"Accept-Language": "en-us",
+						"Content-Type": "application/json"
 					},
 					"url": "https://api.open-meteo.com/v1/forecast?latitude=35.2271&longitude=-80.8431&current_weather=true"
 				}
@@ -38,7 +38,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Temp",
+					"value": {
+						"value": "@activity('WebAct1').output.current_weather.temperature",
+						"type": "Expression"
+					}
+				}
 			},
 			{
 				"name": "copy_web_act",
@@ -99,6 +106,11 @@
 				]
 			}
 		],
+		"variables": {
+			"Temp": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
