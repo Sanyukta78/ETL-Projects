@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://jsonplaceholder.typicode.com",
+			"url": "https://api.open-meteo.com/v1/forecast?latitude=35.2271&longitude=-80.8431&current_weather=true",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
