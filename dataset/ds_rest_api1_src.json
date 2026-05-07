@@ -5,6 +5,11 @@
 			"referenceName": "ls_RestService",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"updatedts": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
