@@ -10,8 +10,8 @@
 					"timeout": "0.12:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
-					"secureOutput": true,
-					"secureInput": true
+					"secureOutput": false,
+					"secureInput": false
 				},
 				"userProperties": [
 					{
@@ -29,7 +29,10 @@
 						"additionalColumns": [
 							{
 								"name": "ingestion_date",
-								"value": "@utcNow()"
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -75,6 +78,12 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"annotations": []
