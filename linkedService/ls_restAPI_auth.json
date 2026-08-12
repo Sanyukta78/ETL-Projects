@@ -1,0 +1,10 @@
+{
+	"name": "ls_restAPI_auth",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://ss-first-keyvault.vault.azure.net/"
+		}
+	}
+}
