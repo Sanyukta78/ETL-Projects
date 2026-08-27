@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "*.csv",
+				"folderPath": "partitioned_folder",
 				"fileSystem": "bronze"
 			},
 			"columnDelimiter": ",",
